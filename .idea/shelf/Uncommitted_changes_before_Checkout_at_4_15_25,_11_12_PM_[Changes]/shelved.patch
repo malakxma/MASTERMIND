@@ -1,0 +1,91 @@
+Index: MediumLevel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class MediumLevel {\n}\n
+===================================================================
+diff --git a/MediumLevel.java b/MediumLevel.java
+--- a/MediumLevel.java	(revision 1f15ea4ecc2ccb6653227065002c4cc8171a8551)
++++ b/MediumLevel.java	(date 1744734864539)
+@@ -1,2 +1,14 @@
+-public class MediumLevel {
++public class MediumLevel implements GameLevel {
++
++    private static final String[] COLORS = {"Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown"};
++
++    @Override
++    public int getPasswordLength() {
++        return 6; // Password will have 6 colors
++    }
++
++    @Override
++    public String[] getAvailableColors() {
++        return COLORS; // 8 color options for guessing
++    }
+ }
+Index: HardLevel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class HardLevel {\n}\n
+===================================================================
+diff --git a/HardLevel.java b/HardLevel.java
+--- a/HardLevel.java	(revision 1f15ea4ecc2ccb6653227065002c4cc8171a8551)
++++ b/HardLevel.java	(date 1744734864530)
+@@ -1,2 +1,16 @@
+-public class HardLevel {
++
++
++public class HardLevel implements GameLevel {
++
++    private static final String[] COLORS = {"Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown", "Black", "White"};
++
++    @Override
++    public int getPasswordLength() {
++        return 8; // Password will have 8 colors
++    }
++
++    @Override
++    public String[] getAvailableColors() {
++        return COLORS; // 10 color options for guessing
++    }
+ }
+Index: GameLevel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class GameLevel {\n}\n
+===================================================================
+diff --git a/GameLevel.java b/GameLevel.java
+--- a/GameLevel.java	(revision 1f15ea4ecc2ccb6653227065002c4cc8171a8551)
++++ b/GameLevel.java	(date 1744734864546)
+@@ -1,2 +1,7 @@
+-public class GameLevel {
++public interface GameLevel {
++    // Returns the length of the password (number of colors)
++    int getPasswordLength();
++
++
++    String[] getAvailableColors();
+ }
+Index: EasyLevel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class EasyLevel {\n}\n
+===================================================================
+diff --git a/EasyLevel.java b/EasyLevel.java
+--- a/EasyLevel.java	(revision 1f15ea4ecc2ccb6653227065002c4cc8171a8551)
++++ b/EasyLevel.java	(date 1744734864549)
+@@ -1,2 +1,14 @@
+-public class EasyLevel {
++public class EasyLevel implements GameLevel {
++
++    private static final String[] COLORS = {"Red", "Blue", "Green", "Yellow", "Purple", "Orange"};
++
++    @Override
++    public int getPasswordLength() {
++        return 4; // Password will have 4 colors
++    }
++
++    @Override
++    public String[] getAvailableColors() {
++        return COLORS; // 6 color options for guessing
++    }
+ }
