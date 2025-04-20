@@ -15,9 +15,9 @@ public class PlayingState implements GameState{
         Game game = controller.getGame();
         int chances = game.getMaxChances();
         while (chances!=0){
-            System.out.println("Available colors: "+ Arrays.toString(game.level.getAvailableColors()));
+            System.out.println("\nAvailable colors: "+ Arrays.toString(game.level.getAvailableColors()));
             System.out.println("Chances left: "+ chances);
-            System.out.print("Enter password guess of " + game.getLength() + "(colors separated by spaces in the order you're guessing:)");
+            System.out.print("Enter password guess of " + game.getLength() + " (colors separated by spaces in the order you're guessing): ");
             String input = scann.nextLine().trim().toUpperCase();
             String[] inputArray = input.split("\\s+");
             if (inputArray.length!=game.getLength()){
@@ -39,7 +39,7 @@ public class PlayingState implements GameState{
             }
 
             //feedback
-            System.out.println("You have " + correctColors + " correct color(s) in the password. \n"+ correctPosition + " of the "+  correctColors+" correct color(s) are in the right position.");
+            System.out.println("\nYou have " + correctColors + " correct color(s) in the password. \n"+ correctPosition + " of the "+  correctColors+" correct color(s) are in the right position.");
 
             if (win!=true){
                 chances-=1;

@@ -15,21 +15,21 @@ public class EndingState implements GameState{
     @Override
     public void run(){
         if (win){
-            System.out.println("You won!");
-            System.out.print("This is the correct password: "+Arrays.toString(secret));
+            System.out.println("\nYou won!");
+            System.out.print("\nThis is the correct password: "+Arrays.toString(secret));
         }
         else{
-            System.out.println("You lose");
-            System.out.print("This is the correct password: "+ Arrays.toString(secret));
+            System.out.println("\nYou lose");
+            System.out.print("\nThis is the correct password: "+ Arrays.toString(secret));
         }
 
-        System.out.print("Do you want to play again? (y/n): ");
+        System.out.print("\nDo you want to play again? (y/n): ");
         String response = scanner.nextLine();
         if (response.strip().equals("y")){
             controller.setState(new ChooseLevel(controller, scanner));
         }
         else{
-            System.out.println("Thanks for playing!");
+            System.out.println("\nThanks for playing!");
             controller.setState(null);
         }
 
