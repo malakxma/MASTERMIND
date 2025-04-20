@@ -21,20 +21,24 @@ public class ChooseLevel implements GameState{
             System.out.println("Invalid input! Please enter 1, 2, or 3.");
             return;
         }
-        switch(difficulty){
-            case 1:
-                level = new EasyLevel();
-                break;
-            case 2:
-                level = new MediumLevel();
-                break;
-            case 3:
-                level = new HardLevel();
-                break;
-            default:
-                throw new IllegalArgumentException("Your response must be 1, 2, or 3");
+        GameLevel level = GameLevelFactory.create(difficulty);
+        
 
-        }
+        //switch(difficulty){
+            //case 1:
+                //level = new EasyLevel();
+               // break;
+            //case 2:
+        //         level = new MediumLevel();
+        //         break;
+        //     case 3:
+        //         level = new HardLevel();
+        //         break;
+        //     default:
+        //         throw new IllegalArgumentException("Your response must be 1, 2, or 3");
+
+        // }
+
 
         // if (!(0<difficulty && difficulty<4)){
         //     throw new IllegalArgumentException("Your response must be 1, 2, or 3");
