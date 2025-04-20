@@ -10,11 +10,11 @@ public class ChooseLevel implements GameState{
     }
     @Override
     public void run(){
-        GameLevel level;
+        // GameLevel level;
         int difficulty;
         System.out.print("Choose a difficulty: 1(Easy), 2(Medium), 3(Hard) -> ");
         String input = scanner.nextLine();
-        System.out.println("Got input: "+ input);
+        // System.out.println("Got input: "+ input);
         try {
             difficulty = Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -22,7 +22,7 @@ public class ChooseLevel implements GameState{
             return;
         }
         GameLevel level = GameLevelFactory.create(difficulty);
-        
+
 
         //switch(difficulty){
             //case 1:
@@ -45,11 +45,11 @@ public class ChooseLevel implements GameState{
         // }
         System.out.printf("Creating game level of difficulty %d\n", difficulty);
         Game newGame = new Game(level);
-        System.out.println("Got game");
+        // System.out.println("Got game");
 
         controller.setGame(newGame);
-        System.out.println("set game");
-        System.out.println("Switching to playing state");
+        // System.out.println("set game");
+        // System.out.println("Switching to playing state");
         controller.setState(new PlayingState(controller, scanner));
     };
     
