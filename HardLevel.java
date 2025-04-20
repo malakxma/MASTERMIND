@@ -1,7 +1,8 @@
+import java.util.*;
 public class HardLevel implements GameLevel {
 
 
-    private static final String[] COLORS = {"Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown", "Black", "White"};
+    private static final String[] COLORS = {"RED", "BLUE", "GREEN", "YELLOW", "PURPLE", "ORANGE", "PINK", "BROWN", "BLACK", "WHITE"};
 
     /**
      * Returns the length of the password for hard level.
@@ -21,5 +22,25 @@ public class HardLevel implements GameLevel {
     @Override
     public String[] getAvailableColors() {
         return COLORS;
+    }
+    @Override
+    public int getMaxChances(){
+        return 14;
+    }
+    // @Override
+    // public int getMaxHintAmount(){
+    //     return 14;
+    // }
+    @Override
+    public String[] passwordGenerator(){
+        String[] password = new String[getPasswordLength()];
+        String color;
+        Random rand = new Random();
+        for (int i=0; i<getPasswordLength(); i++){
+            color = COLORS[rand.nextInt(COLORS.length)];
+            password[i]=color;
+        
+        }
+        return password;
     }
 }

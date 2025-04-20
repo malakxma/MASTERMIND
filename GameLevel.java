@@ -12,5 +12,12 @@ public interface GameLevel {
      * @return an array of color names.
      */
     String[] getAvailableColors();
+
+    int getMaxChances();
+
+    // int getMaxHintAmount();
+
+    String[] passwordGenerator();
+
 }
 

@@ -1,25 +1,37 @@
+import java.util.*;
 public class MediumLevel implements GameLevel {
 
 
-    private static final String[] COLORS = {"Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown"};
+    private static final String[] COLORS = {"RED", "BLUE", "GREEN", "YELLOW", "PURPLE", "ORANGE", "PINK", "BROWN"};
 
-    /**
-     * Returns the length of the password for medium level.
-     *
-     * @return 6, indicating a 6-color password.
-     */
     @Override
     public int getPasswordLength() {
         return 6;
     }
 
-    /**
-     * Returns the array of available colors for medium level.
-     *
-     * @return a String array containing 8 colors.
-     */
+
     @Override
     public String[] getAvailableColors() {
         return COLORS;
+    }
+    @Override
+    public int getMaxChances(){
+        return 12;
+    }
+    // @Override
+    // public int getMaxHintAmount(){
+    //     return 12;
+    // }
+    @Override
+    public String[] passwordGenerator(){
+        String[] password = new String[getPasswordLength()];
+        String color;
+        Random rand = new Random();
+        for (int i=0; i<getPasswordLength(); i++){
+            color = COLORS[rand.nextInt(COLORS.length)];
+            password[i]=color;
+        
+        }
+        return password;
     }
 }
