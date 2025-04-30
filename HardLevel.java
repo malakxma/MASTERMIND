@@ -4,25 +4,18 @@ public class HardLevel implements GameLevel {
 
     private static final String[] COLORS = {"RED", "BLUE", "GREEN", "YELLOW", "PURPLE", "ORANGE", "PINK", "BROWN", "BLACK", "WHITE"};
 
-    /**
-     * Returns the length of the password for hard level.
-     *
-     * @return 8, indicating an 8-color password.
-     */
-    @Override
+    //returns lenght of passwor for hard - 8
     public int getPasswordLength() {
         return 8;
     }
 
-    /**
-     * Returns the array of available colors for hard level.
-     *
-     * @return a String array containing 10 colors.
-     */
+    //returns array of avaiable colors - 10 
     @Override
     public String[] getAvailableColors() {
         return COLORS;
     }
+
+    //returns int of max chances -14
     @Override
     public int getMaxChances(){
         return 14;
@@ -31,6 +24,8 @@ public class HardLevel implements GameLevel {
     // public int getMaxHintAmount(){
     //     return 14;
     // }
+
+    //generates a new secret password repeats allowed
     @Override
     public String[] passwordGenerator(){
         String[] password = new String[getPasswordLength()];

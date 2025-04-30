@@ -17,6 +17,7 @@ public class ChooseLevel implements GameState{
         String input = scanner.nextLine();
         // System.out.println("Got input: "+ input);
         try {
+            //convert string into integer
             difficulty = Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("\nInvalid input! Please enter 1, 2, or 3.");

@@ -22,7 +22,7 @@ public class EasyLevel implements GameLevel {
     //     return 10;
     // }
     @Override
-    public String[] passwordGenerator(){
+    public String[] passwordGenerator(){ //generate password that doesn't have any repeat colors
         String[] password = new String[getPasswordLength()];
         Set<String> used = new HashSet<>();
         String color;
@@ -30,9 +30,9 @@ public class EasyLevel implements GameLevel {
         for (int i=0; i<getPasswordLength(); i++){
             do {
                 color = COLORS[rand.nextInt(COLORS.length)];
-            } while (used.contains(color)); // Keep generating until you get a unique color
+            } while (used.contains(color)); // Keep generating until get a unique color
             password[i] = color;
-            used.add(color);  // Mark this color as used
+            used.add(color);  // Mark color as used
         
         }
         return password;

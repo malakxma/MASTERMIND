@@ -22,7 +22,7 @@ public class EndingState implements GameState{
             System.out.println("\nYou lose");
             System.out.print("\nThis is the correct password: "+ Arrays.toString(secret));
         }
-
+        //determine if another game takes place
         System.out.print("\nDo you want to play again? (y/n): ");
         String response = scanner.nextLine();
         if (response.strip().equals("y")){
@@ -30,6 +30,7 @@ public class EndingState implements GameState{
         }
         else{
             System.out.println("\nThanks for playing!");
+            //end game loop
             controller.setState(null);
         }
 

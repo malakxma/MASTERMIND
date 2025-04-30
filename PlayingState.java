@@ -14,12 +14,14 @@ public class PlayingState implements GameState{
         boolean win = false;
         Game game = controller.getGame();
         int chances = game.getMaxChances();
+
+        //until chances run out or win
         while (chances!=0){
             System.out.println("\nAvailable colors: "+ Arrays.toString(game.level.getAvailableColors()));
             System.out.println("Chances left: "+ chances);
             System.out.print("Enter password guess of " + game.getLength() + " (colors separated by spaces in the order you're guessing): ");
             String input = scann.nextLine().trim().toUpperCase();
-            String[] inputArray = input.split("\\s+");
+            String[] inputArray = input.split("\\s+"); //turn input into an array, split at 1+ whitespaces
             if (inputArray.length!=game.getLength()){
                 throw new IllegalArgumentException("You can only have "+ game.getLength() + " colors");
             }
@@ -49,6 +51,7 @@ public class PlayingState implements GameState{
             }
 
         }
+        //change state
         controller.setState(new EndingState(controller, win, scann, game.getSecretPassword()));
     };
 }

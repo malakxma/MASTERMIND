@@ -1,10 +1,5 @@
 public class GameLevelFactory {
-    /**
-     * Creates a GameLevel implementation based on the given difficulty.
-     *
-     * @param difficulty 1 for Easy, 2 for Medium, 3 for Hard
-     * @return the corresponding GameLevel
-     */
+    //creates gamelevle implemenation based on difficulty
     public static GameLevel create(int difficulty) {
         switch (difficulty) {
             case 1:

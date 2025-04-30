@@ -1,22 +1,14 @@
 public interface GameLevel {
-    /**
-     * Returns the length of the secret password.
-     *
-     * @return the number of colors in the password.
-     */
+    //returns number of colors in password
     int getPasswordLength();
 
-    /**
-     * Returns the array of available colors that the player can choose from.
-     *
-     * @return an array of color names.
-     */
+    //returns array of available colors to pick from
     String[] getAvailableColors();
-
+    //returns number of possible chances
     int getMaxChances();
 
     // int getMaxHintAmount();
-
+    //generates password
     String[] passwordGenerator();
 
 }
