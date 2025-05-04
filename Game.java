@@ -1,11 +1,12 @@
 import java.util.*;
-public class Game {
+public class Game implements FeedbackSubject{
 
     GameLevel level;
     int maxChance;
     int passLength;
     String[] possibleColors;
     String[] secretPassword;
+    public List<FeedbackObserver> observers = new ArrayList<>();
 
     public Game(GameLevel strategy){
         this.level = strategy;
@@ -15,6 +16,33 @@ public class Game {
         this.passLength = strategy.getPasswordLength();
 
     }
+
+    //register observer
+    @Override
+    public void registerObserver(FeedbackObserver obs){
+        observers.add(obs);
+    };
+
+   //remove observer
+   @Override
+    public void removeObserver(FeedbackObserver obs){
+        observers.remove(obs);
+    };
+
+    //notify observers of new guess
+    @Override
+    public void notifyObservers(String[] guess){
+        for (String color : guess){
+            validateColor(color);
+        }
+        int black = correctColorPos(guess); //num colors that are correct color and position
+        int white = correctColor(guess)-black; //num colors only in correct position, subtract black because we only want correct color
+        for (FeedbackObserver obs: observers){
+            obs.update(black, white);
+        }
+
+    };
+    
     //getter for how many chances
     public int getMaxChances(){
         return maxChance;

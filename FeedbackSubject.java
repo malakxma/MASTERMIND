@@ -1,6 +1,5 @@
 //Defines the “subject” that notifies observers whenever a guess happen
 
-import java.util.*;
 
 public interface FeedbackSubject {
     //regeister observer
