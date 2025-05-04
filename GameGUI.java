@@ -45,6 +45,18 @@ public class GameGUI extends JFrame implements FeedbackObserver{
         return this.game;
     }
 
+    public void setGuess(String[] guess){
+        this.guess=guess;
+    }
+
+    public void setChances(int chance){
+        this.currentChances=chance;
+    }
+
+    // public int getChance(){
+    //     return this.currentChances;
+    // }
+
     //GUI for gameplay -> color sequence, text area, and so forth
     public void prepGUI(){
         getContentPane().removeAll();
@@ -135,18 +147,6 @@ public class GameGUI extends JFrame implements FeedbackObserver{
         guessPanel.revalidate();
         guessPanel.repaint();
     }
-
-    public void setGuess(String[] guess){
-        this.guess=guess;
-    }
-
-    public void setChances(int chance){
-        this.currentChances=chance;
-    }
-
-    // public int getChance(){
-    //     return this.currentChances;
-    // }
     
     @Override
     public void update(int blackPegs, int whitePegs){
