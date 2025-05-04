@@ -96,7 +96,7 @@ public class GameGUI extends JFrame implements FeedbackObserver{
                 //highlight and add colors into selected
                 colorCircle.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
-                        //test for the weird selection lag
+                        //test for the weird selection lag - can't figure out
                         // System.out.println("Clicked slot " + slot + " color: " + colorName);
 
                         currentSelections.put(slot, colorName);
@@ -144,14 +144,10 @@ public class GameGUI extends JFrame implements FeedbackObserver{
         this.currentChances=chance;
     }
 
-    public int getChance(){
-        return this.currentChances;
-    }
-    public void feedbackText(String text){
-        feedbackArea.append(text);
-    }
+    // public int getChance(){
+    //     return this.currentChances;
+    // }
     
-
     @Override
     public void update(int blackPegs, int whitePegs){
         currentChances--;
