@@ -1,6 +1,6 @@
 
 
 public interface GameState {
-    public void run();
+    public void run(GameGUI gui);
     
 }

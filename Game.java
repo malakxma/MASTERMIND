@@ -32,11 +32,14 @@ public class Game implements FeedbackSubject{
     //notify observers of new guess
     @Override
     public void notifyObservers(String[] guess){
+        //validate guess contains allowed colors -> not really needed considering the gui doesn't really allow invalid colors
         for (String color : guess){
             validateColor(color);
         }
         int black = correctColorPos(guess); //num colors that are correct color and position
         int white = correctColor(guess)-black; //num colors only in correct position, subtract black because we only want correct color
+        
+        //update observers of the feedback -> there's currently only 1 observer
         for (FeedbackObserver obs: observers){
             obs.update(black, white);
         }
@@ -65,7 +68,7 @@ public class Game implements FeedbackSubject{
             throw new IllegalArgumentException(color+ " is not a valid input for password");
         }
     }
-    //feedback for textbased game - check if there are correct colors present
+    //check if there are correct colors present
     public int correctColor(String[] colors){
         int correct = 0;
         for (String colorChoice: colors){

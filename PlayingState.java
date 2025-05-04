@@ -1,57 +1,37 @@
 import java.util.*;
 
+import javax.swing.JOptionPane;
 public class PlayingState implements GameState{
-    public GameController controller;
-    public String guess;
-    public  Scanner scann;
-
-    public PlayingState(GameController control, Scanner scanner){
-        this.controller = control;
-        this.scann = scanner;
+    public void run(GameGUI gui){
+        gui.setGuess(new String[gui.getGame().getLength()]);
+        gui.prepGUI();
     }
-    @Override
-    public void run(){
-        boolean win = false;
-        Game game = controller.getGame();
-        int chances = game.getMaxChances();
+    public void handleGuess(GameGUI gui){
+        //get the colors and positions of current guess
+        Map<Integer, String> selections = gui.getCurrentSelections();
+        String[] guess = new String[gui.getGame().getLength()];
 
-        //until chances run out or win
-        while (chances!=0){
-            System.out.println("\nAvailable colors: "+ Arrays.toString(game.level.getAvailableColors()));
-            System.out.println("Chances left: "+ chances);
-            System.out.print("Enter password guess of " + game.getLength() + " (colors separated by spaces in the order you're guessing): ");
-            String input = scann.nextLine().trim().toUpperCase();
-            String[] inputArray = input.split("\\s+"); //turn input into an array, split at 1+ whitespaces
-            if (inputArray.length!=game.getLength()){
-                throw new IllegalArgumentException("You can only have "+ game.getLength() + " colors");
-            }
-            for (String colors: inputArray){
-                game.validateColor(colors);
-            }
-
-            //correct colors
-            int correctColors = game.correctColor(inputArray);
-
-            //colors in correct position
-            int correctPosition = game.correctColorPos(inputArray);
-
-            //check if password is completely correct
-            if (correctColors == game.getLength() && correctPosition == game.getLength()){
-                win = true;
-            }
-
-            //feedback
-            System.out.println("\nYou have " + correctColors + " correct color(s) in the password. \n"+ correctPosition + " of the "+  correctColors+" correct color(s) are in the right position.");
-
-            if (win!=true){
-                chances-=1;
-            }
-            else{
-                break;
-            }
-
+        //check if color selection and expected password length is equal
+        if (selections.size() != guess.length) {
+            JOptionPane.showMessageDialog(gui, "Please make a selection for each slot.", "Incomplete Guess", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        //change state
-        controller.setState(new EndingState(controller, win, scann, game.getSecretPassword()));
-    };
+
+        //put guess in the correct order
+        for (int i = 0; i < guess.length; i++) {
+            guess[i] = selections.get(i);
+        }
+
+        try {
+            //declare the guess
+            gui.setGuess(guess);
+
+            //notify obserbvers of guess to validate colors, collect feedback, and return feedback
+            gui.getGame().notifyObservers(guess);
+            gui.clearSelection();
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(gui, ex.getMessage(), "Invalid Guess", JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }
 }

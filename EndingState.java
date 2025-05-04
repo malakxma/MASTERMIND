@@ -1,38 +1,22 @@
-import java.util.*;
+import javax.swing.JOptionPane;
 
 public class EndingState implements GameState{
-    public GameController controller;
-    public boolean win;
-   public Scanner scanner;
-   public String[] secret;
-    public EndingState(GameController control, boolean won, Scanner scan, String[] password){
-        this.controller = control;
-        this.win = won;
-        this.scanner = scan;
-        this.secret = password;
-
+    public final boolean win;
+    public EndingState(boolean win){
+        this.win = win;
     }
     @Override
-    public void run(){
-        if (win){
-            System.out.println("\nYou won!");
-            System.out.print("\nThis is the correct password: "+Arrays.toString(secret));
-        }
-        else{
-            System.out.println("\nYou lose");
-            System.out.print("\nThis is the correct password: "+ Arrays.toString(secret));
-        }
-        //determine if another game takes place
-        System.out.print("\nDo you want to play again? (y/n): ");
-        String response = scanner.nextLine();
-        if (response.strip().equals("y")){
-            controller.setState(new ChooseLevel(controller, scanner));
-        }
-        else{
-            System.out.println("\nThanks for playing!");
-            //end game loop
-            controller.setState(null);
-        }
+    public void run(GameGUI gui){
+        //if win, message is guessed the password, else, game over
+        String message = win ? "🎉 You guessed the password!" : "💀 Game over!";
+        message += "\nThe correct password was: " + String.join(" ", gui.getGame().getSecretPassword());
 
-    };
+        //allow for anonther game
+        int choice = JOptionPane.showConfirmDialog(gui, message + "\nPlay again?", "Game Over", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+            gui.setState(new ChooseLevel());
+        } else {
+            System.exit(0);
+        }
+    }
 }
