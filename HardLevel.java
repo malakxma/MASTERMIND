@@ -20,10 +20,7 @@ public class HardLevel implements GameLevel {
     public int getMaxChances(){
         return 14;
     }
-    // @Override
-    // public int getMaxHintAmount(){
-    //     return 14;
-    // }
+   
 
     //generates a new secret password repeats allowed
     @Override
