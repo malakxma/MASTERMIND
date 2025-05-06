@@ -7,8 +7,7 @@ public interface GameLevel {
     //returns number of possible chances
     int getMaxChances();
 
-    // int getMaxHintAmount();
-    //generates password
+    
     String[] passwordGenerator();
 
 }
