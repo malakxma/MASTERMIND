@@ -17,10 +17,7 @@ public class EasyLevel implements GameLevel {
     public int getMaxChances(){
         return 10;
     }
-    // @Override
-    // public int getMaxHintAmount(){
-    //     return 10;
-    // }
+   
     @Override
     public String[] passwordGenerator(){ //generate password that doesn't have any repeat colors
         String[] password = new String[getPasswordLength()];
