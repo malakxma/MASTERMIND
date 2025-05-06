@@ -18,10 +18,7 @@ public class MediumLevel implements GameLevel {
     public int getMaxChances(){
         return 12;
     }
-    // @Override
-    // public int getMaxHintAmount(){
-    //     return 12;
-    // }
+   
     @Override
     public String[] passwordGenerator(){
         String[] password = new String[getPasswordLength()];
